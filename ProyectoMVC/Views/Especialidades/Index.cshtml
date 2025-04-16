@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Especialidad>
+@{
+    ViewData["Title"] = "Listado de especialidades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="card-header">
+        <h1>Especialidades Registradas</h1>
+    </div>
+    <div class="row">
+        <a asp-controller="Especialidades" asp-action="Create" class="btn btn-primary mt-3">Registrar Especialidad</a>
+    </div>
+    <!--Tabla Especialidades-->
+    <div class="row mt-3">
+        @if (Model != null && Model.Any())
+        {
+            <table class="table table-bordered table-striped text-center">
+                <!--Encabezado de tabla Especialidades -->
+                <thead>
+                    <tr>
+                        <th scope="col">@Html.DisplayNameFor(m => m.IdEspecialidad)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Tipo)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Descripcion)</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <!--Cuerpo de la Tabla de Especialidades-->
+                @{ var index = 1; }
+                @foreach (var i in Model)
+                {
+                    <tr class="m-3">
+                        <td>@index</td>
+                        <td>@i.IdEspecialidad</td>
+                        <td>@i.Tipo</td>
+                        <td>@i.Descripcion</td>
+                        <td>
+                            <a asp-controller="Especialidades" asp-action="Edit" asp-route-id="@i.IdEspecialidad" class="btn btn-warning btn-sm">Modificar</a>
+                        </td>
+                        <td>
+                            <a asp-controller="Especialidades" asp-action="Delete" asp-route-id="@i.IdEspecialidad" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                        index++;
+                    </tr>
+                }
+            </table> }
+        else
+        {
+            <div class="alert alert-warning text-center mt-4">
+                <i class="bi bi-exclamation-triangle-fill"></i> No hay especialidades registradas
+            </div>
+        }
+    </div>
+</div>
+

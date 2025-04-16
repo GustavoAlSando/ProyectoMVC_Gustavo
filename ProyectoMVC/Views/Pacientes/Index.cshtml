@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Paciente>
+@{
+    ViewData["Title"] = "Listado de Pacientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="card-header">
+        <h1>Pacientes Registrados</h1>
+    </div>
+    <div class="row">
+        <a asp-controller="Pacientes" asp-action="Create" class="btn btn-primary mt-3">Registrar Paciente</a>
+    </div>
+    <!--Tabla Pacientes-->
+    <div class="row mt-3">
+        @if (Model != null && Model.Any())
+        {
+            <table class="table table-bordered table-striped text-center">
+                <!--Encabezado de tabla clientes-->
+                <thead>
+                    <tr>
+                        <th scope="col">@Html.DisplayNameFor(m => m.IdPaciente)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Nombre)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Cedula)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Telefono)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Genero)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Edad)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Residencia)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Correo)</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <!--Cuerpo de la Tabla de Pacientes-->
+                @{ var index = 1; }
+                @foreach (var i in Model)
+                {
+                    <tr class="m-3">
+                        <td>@index</td>
+                        <td>@i.IdPaciente</td>
+                        <td>@i.Nombre</td>
+                        <td>@i.Cedula</td>
+                        <td>@i.Telefono</td>
+                        <td>@i.Genero</td>
+                        <td>@i.Edad</td>
+                        <td>@i.Residencia</td>
+                        <td>@i.Correo</td>
+                        <td>
+                            <a asp-controller="Pacientes" asp-action="Edit" asp-route-id="@i.IdPaciente" class="btn btn-warning btn-sm">Modificar</a>
+                        </td>
+                        <td>
+                            <a asp-controller="Pacientes" asp-action="Delete" asp-route-id="@i.IdPaciente" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                        index++;
+                    </tr>
+                }
+            </table> }
+        else
+        {
+            <div class="alert alert-warning text-center mt-4">
+                <i class="bi bi-exclamation-triangle-fill"></i> No hay pacientes registrados
+            </div>
+        }
+    </div>
+</div>

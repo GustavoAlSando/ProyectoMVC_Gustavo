@@ -15,24 +15,24 @@ namespace ProyectoMVC.Models
         //Atributo -- Nombre
         [Required(ErrorMessage = "Ingrese el nombre del paciente")]
         [StringLength(100, ErrorMessage = "Máximo 100 caracteres")]
-        [Display(Name = "Nombre Paciente")]
+        [Display(Name = "Nombre del Paciente")]
         public string Nombre { get; set; }
 
         //Atributo -- Cedula
         [Required(ErrorMessage = "Ingrese la cédula del paciente")]
         [StringLength(20, ErrorMessage = "Máximo 20 caracteres")]
-        [Display(Name = "Cédula Paciente")]
+        [Display(Name = "Cédula del Paciente")]
         public string Cedula { get; set; }
 
         //Atributo -- Telefono
         [Required(ErrorMessage = "Ingrese un número de teléfono")]
         [Phone(ErrorMessage = "Ingresar un número de teléfono válido")]
-        [Display(Name = "Teléfono Paciente")]
+        [Display(Name = "Teléfono del Paciente")]
         public string Telefono { get; set; }
 
         //Atributo -- Genero
         [Required(ErrorMessage = "Seleccione un género")]
-        [Display(Name = "Género Paciente")]
+        [Display(Name = "Género del Paciente")]
         public string Genero { get; set; }
 
         //Atributo -- Edad
